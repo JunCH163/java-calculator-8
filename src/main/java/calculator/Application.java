@@ -7,7 +7,7 @@ public class Application {
         System.out.println("덧셈할 숫자를 입력하세요.");
         String userInput = Console.readLine();
 
-        String[] userInputArr = userInput.split(",");
+        String[] userInputArr = userInput.split(",|:");
         int sum = 0;
         for (String numberString : userInputArr) {
             int number = Integer.parseInt(numberString);
