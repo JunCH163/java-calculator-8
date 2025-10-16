@@ -2,17 +2,32 @@ package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Application {
     public static void main(String[] args) {
-        System.out.println("덧셈할 숫자를 입력하세요.");
+        System.out.println("덧셈할 문자열을 입력해 주세요.");
         String userInput = Console.readLine();
-
-        String[] userInputArr = userInput.split(",|:");
+        userInput = userInput.replace("\\n", "\n");
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(userInput);
         int sum = 0;
-        for (String numberString : userInputArr) {
-            int number = Integer.parseInt(numberString);
-            sum += number;
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            String[] customUserInputArr = m.group(2).split(Pattern.quote(customDelimiter));
+            for (String numberString : customUserInputArr) {
+                int number = Integer.parseInt(numberString);
+                sum += number;
+            }
+            System.out.println("결과: " + sum);
+        } else {
+            String[] userInputArr = userInput.split(",|:");
+            
+            for (String numberString : userInputArr) {
+                int number = Integer.parseInt(numberString);
+                sum += number;
+            }
+            System.out.println("결과: " + sum);
         }
-        System.out.println(sum);
     }
 }
