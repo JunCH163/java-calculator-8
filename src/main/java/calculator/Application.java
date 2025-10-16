@@ -22,7 +22,7 @@ public class Application {
             System.out.println("결과: " + sum);
         } else {
             String[] userInputArr = userInput.split(",|:");
-            
+
             for (String numberString : userInputArr) {
                 int number = Integer.parseInt(numberString);
                 sum += number;
