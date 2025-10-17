@@ -20,22 +20,32 @@ public class Application {
             String customDelimiter = m.group(1);
             String[] customUserInputArr = m.group(2).split(Pattern.quote(customDelimiter));
             for (String numberString : customUserInputArr) {
-                int number = Integer.parseInt(numberString);
-                if (number < 0) {
+                try {
+                    int number = Integer.parseInt(numberString);
+                    if (number < 0) {
+                        throw new IllegalArgumentException();
+                    }
+                    sum += number;
+                } catch (NumberFormatException e) {
                     throw new IllegalArgumentException();
                 }
-                sum += number;
+
             }
             System.out.println("결과: " + sum);
         } else {
             String[] userInputArr = userInput.split(",|:");
 
             for (String numberString : userInputArr) {
-                int number = Integer.parseInt(numberString);
-                if (number < 0) {
+                try{
+                    int number = Integer.parseInt(numberString);
+                    if (number < 0) {
+                        throw new IllegalArgumentException();
+                    }
+                    sum += number;
+                } catch (NumberFormatException e) {
                     throw new IllegalArgumentException();
                 }
-                sum += number;
+
             }
             System.out.println("결과: " + sum);
         }
