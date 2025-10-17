@@ -21,6 +21,9 @@ public class Application {
             String[] customUserInputArr = m.group(2).split(Pattern.quote(customDelimiter));
             for (String numberString : customUserInputArr) {
                 int number = Integer.parseInt(numberString);
+                if (number < 0) {
+                    throw new IllegalArgumentException();
+                }
                 sum += number;
             }
             System.out.println("결과: " + sum);
@@ -29,6 +32,9 @@ public class Application {
 
             for (String numberString : userInputArr) {
                 int number = Integer.parseInt(numberString);
+                if (number < 0) {
+                    throw new IllegalArgumentException();
+                }
                 sum += number;
             }
             System.out.println("결과: " + sum);
