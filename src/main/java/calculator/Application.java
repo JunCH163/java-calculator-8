@@ -24,19 +24,23 @@ public class Application {
             numbers = userInput.split(",|:");
         }
 
+        int totalSum = sum(numbers);
+            System.out.println("결과: " + totalSum);
+    }
+
+    private static int sum(String[] numbers) {
         int sum = 0;
-            for (String numberString : numbers) {
-                try{
-                    int number = Integer.parseInt(numberString);
-                    if (number < 0) {
-                        throw new IllegalArgumentException();
-                    }
-                    sum += number;
-                } catch (NumberFormatException e) {
+        for (String numberString : numbers) {
+            try {
+                int number = Integer.parseInt(numberString);
+                if (number < 0) {
                     throw new IllegalArgumentException();
                 }
-
+                sum += number;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
             }
-            System.out.println("결과: " + sum);
+        }
+        return sum;
     }
 }
