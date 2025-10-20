@@ -15,27 +15,17 @@ public class Application {
         }
         userInput = userInput.replace("\\n", "\n");
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(userInput);
-        int sum = 0;
+        String[] numbers;
+
         if (m.find()) {
             String customDelimiter = m.group(1);
-            String[] customUserInputArr = m.group(2).split(Pattern.quote(customDelimiter));
-            for (String numberString : customUserInputArr) {
-                try {
-                    int number = Integer.parseInt(numberString);
-                    if (number < 0) {
-                        throw new IllegalArgumentException();
-                    }
-                    sum += number;
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException();
-                }
-
-            }
-            System.out.println("결과: " + sum);
+            numbers = m.group(2).split(Pattern.quote(customDelimiter));
         } else {
-            String[] userInputArr = userInput.split(",|:");
+            numbers = userInput.split(",|:");
+        }
 
-            for (String numberString : userInputArr) {
+        int sum = 0;
+            for (String numberString : numbers) {
                 try{
                     int number = Integer.parseInt(numberString);
                     if (number < 0) {
@@ -48,6 +38,5 @@ public class Application {
 
             }
             System.out.println("결과: " + sum);
-        }
     }
 }
